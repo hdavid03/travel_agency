@@ -1,8 +1,9 @@
 package com.javawebhw.travel_agency.model;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -23,11 +24,17 @@ public class User extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "address")
+    private String address;
 
     @OneToMany(mappedBy = "user")
-    private ArrayList<Offer> savedOffers;
+    private List<Offer> savedOfferList;
 
     @OneToMany(mappedBy = "user")
-    private ArrayList<Reservation> reservations;
+    private List<Reservation> reservationList;
 }
