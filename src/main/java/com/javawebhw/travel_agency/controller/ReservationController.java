@@ -3,15 +3,14 @@ package com.javawebhw.travel_agency.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.javawebhw.travel_agency.model.Reservation;
 import com.javawebhw.travel_agency.service.ReservationService;
@@ -23,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/reservation")
 public class ReservationController {
 
@@ -31,32 +30,34 @@ public class ReservationController {
     private final ReservationService reservationService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Reservation>> getAllReservations() {
+    public String getAllReservations(Model model) {
         List<Reservation> reservations = reservationService.getReservations();
-        return new ResponseEntity<>(reservations, HttpStatus.OK);
+        model.addAttribute("reservationList", reservations);
+        return "reservations";
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Reservation> getReservationById(@PathVariable Long id) {
+    public String getReservationById(@PathVariable Long id, Model model) {
         Reservation reservation = reservationService.findReservationById(id);
-        return new ResponseEntity<>(reservation, HttpStatus.OK);
+        model.addAttribute("reservation", reservation);
+        return "reservation";
     }
 
     @PostMapping("/add/new")
-    public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation) {
+    public String addReservation(@Validated Reservation reservation) {
         Reservation newReservation = reservationService.addReservation(reservation);
-        return new ResponseEntity<>(newReservation, HttpStatus.CREATED);
+        return "success";
     }
 
     @PostMapping("/add/update")
-    public ResponseEntity<Reservation> updateReservation(@RequestBody Reservation reservation) {
+    public String updateReservation(@Validated Reservation reservation) {
         Reservation updatedReservation = reservationService.updateReservation(reservation);
-        return new ResponseEntity<>(updatedReservation, HttpStatus.OK);
+        return "success";
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteReservationById(@PathVariable Long id) {
+    public String deleteReservationById(@PathVariable Long id) {
         reservationService.deleteReservationById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return "success";
     }
 }

@@ -4,15 +4,14 @@ import com.javawebhw.travel_agency.model.Offer;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.javawebhw.travel_agency.service.OfferService;
 
@@ -23,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/offer")
 public class OfferController {
 
@@ -31,32 +30,34 @@ public class OfferController {
     private final OfferService offerService;
     
     @GetMapping("/all")
-    public ResponseEntity<List<Offer>> getAllOffers() {
+    public String getAllOffers(Model model) {
         List<Offer> offers = offerService.getOffers();
-        return new ResponseEntity<>(offers, HttpStatus.OK);
+        model.addAttribute("offerList", offers);
+        return "offers";
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Offer> getOfferById(@PathVariable Long id) {
+    public String getOfferById(@PathVariable Long id, Model model) {
         Offer offer = offerService.findOfferById(id);
-        return new ResponseEntity<>(offer, HttpStatus.OK);
+        model.addAttribute("offer", offer);
+        return "offer";
     }
 
     @PostMapping("/add/new")
-    public ResponseEntity<Offer> addoffer(@RequestBody Offer offer) {
+    public String addoffer(@Validated Offer offer) {
         Offer newOffer = offerService.addOffer(offer);
-        return new ResponseEntity<>(newOffer, HttpStatus.CREATED);
+        return "success";
     }
 
     @PostMapping("/add/update")
-    public ResponseEntity<Offer> updateOffer(@RequestBody Offer offer) {
+    public String updateOffer(@Validated Offer offer) {
         Offer updatedOffer = offerService.updateOffer(offer);
-        return new ResponseEntity<>(updatedOffer, HttpStatus.OK);
+        return "success";
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteOfferById(@PathVariable Long id) {
+    public String deleteOfferById(@PathVariable Long id) {
         offerService.deleteOfferById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return "success";
     }
 }

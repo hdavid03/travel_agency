@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+  <head>
+    <title>Navigation bar</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+  </head>
+  <body>
+    <nav class="navbar">
+        <ul>
+            <li><a th:href="@{/}">Főoldal</a></li>
+            <li><a th:href="@{/user/login}">Bejelentkezés</a></li>
+            <li><a th:href="@{/user/signup}">Regisztráció</a></li>
+        </ul>
+    </nav>
+  </body>
+</html>
