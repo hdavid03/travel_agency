@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -31,12 +31,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String loginUser() {
+    public String loginPage() {
         return "login";
     }
 
     @GetMapping("/signup")
-    public String signUpUser() {
+    public String signUpPage() {
         return "signup";
     }
 
@@ -54,9 +54,20 @@ public class UserController {
         return "profile";
     }
 
-    @PostMapping("/add/new")
+    @PostMapping("/new")
     public String addUser(@Validated User user) {
         User newUser = userService.addUser(user);
+        return "redirect:/";
+    }
+    
+    @PostMapping("/login")
+    public String loginUser(@RequestParam String email, @RequestParam String password) {
+        User user = userService.findUserByEmail(email);
+        if (user.getPassword().equals(password)) {
+            System.out.println("Felhasználó meg van");
+        } else {
+            System.out.println("Nincs ilyen felhasználó ezzel a jelszóval");
+        }
         return "redirect:/";
     }
 

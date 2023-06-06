@@ -1,7 +1,7 @@
 nav {
     display: flex;
     -webkit-box-pack: justify;
-    justify-content: space-between;
+    justify-content: center;
     -webkit-box-align: center;
     align-items: center;
     width: 100%;
@@ -30,8 +30,12 @@ nav {
     text-align: center;
     align-items: center;
     text-decoration: none;
-    transition: ease-out;
+    transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
     color: darkblue;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 600;
     height: 48px;
 }
 
@@ -41,5 +45,5 @@ nav {
 }
 
 .navbar a:hover {
-    background-color: #e0efef;
+    background-color: #efffff;
 }

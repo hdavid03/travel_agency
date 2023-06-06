@@ -11,9 +11,25 @@
     <meta name="keywords" content="nyaralás, külföld, utazás">
     <meta name="author" content="hdavid03">
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
+    <div class="container">
+      <h2>Login Form</h2>
+      <form action="/user/login" method="post">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="Enter your email address">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+
+        <div class="clearfix">
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </div>
     <div th:insert="~{fragments/footer.html}"></div>
   </body>
 </html>

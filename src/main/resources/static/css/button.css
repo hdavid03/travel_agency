@@ -1,0 +1,21 @@
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px -1px 0px 1px rgba(0,0,0,0.3) inset;
+  font-weight: 600;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:active {
+  transform: translate(0, 1px);
+  box-shadow: none;
+}

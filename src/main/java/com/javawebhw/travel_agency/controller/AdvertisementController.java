@@ -37,6 +37,11 @@ public class AdvertisementController {
         return "index";
     }
 
+    @GetMapping("/")
+    public String advertisementTemplate(Model model) {
+        return "advertisement";
+    }
+
     @GetMapping("/find/{id}")
     public String getAdvertisementById(@PathVariable Long id, Model model) {
         Advertisement advertisement = advertisementService.findAdvertisementById(id);

@@ -1,6 +1,6 @@
 package com.javawebhw.travel_agency.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 import jakarta.annotation.Nullable;
@@ -24,17 +24,20 @@ public class User extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "birth_date")
-    private LocalDate birthDate;
+    private Date birthDate;
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "email")
     private String email;
     @Column(name = "address")
     private String address;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(mappedBy = "user")
     private List<Offer> savedOfferList;
 
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservationList;
+
 }

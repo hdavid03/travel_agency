@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eurotravel hirdetés nézet</title>
+    <meta name="description" content="Utazás európában">
+    <meta name="keywords" content="nyaralás, külföld, utazás">
+    <meta name="author" content="hdavid03">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/advertisement.css}">
+  </head>
+  <body>
+    <div th:insert="~{fragments/navbar.html}"></div>
+    <div class="advertisement">
+        <h1>Advertisement Title</h1>
+        <p>Advertisement Description</p>
+        <img src="advertisement.jpg" alt="Advertisement Image">
+        <a href="https://example.com/referral-link">Refer a Friend</a>
+    </div>
+    <div th:insert="~{fragments/footer.html}"></div>
+  </body>
+</html>
