@@ -3,6 +3,9 @@ package com.javawebhw.travel_agency.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.javawebhw.travel_agency.model.User;
@@ -16,7 +19,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
+
+    private static final String USER_NOT_FOUND = "User by %s=%s not found!";
 
     @Autowired
     private final UserRepository userRepository;
@@ -35,7 +40,9 @@ public class UserService {
 
     public User findUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException(
+                    String.format(USER_NOT_FOUND, "id", Long.toString(id)))
+                );
     }
 
     public void deleteUserById(Long id) {
@@ -44,8 +51,15 @@ public class UserService {
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException(
+                    String.format(USER_NOT_FOUND, "email", email))
+                );
        
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return findUserByEmail(username);
     }
 
 }

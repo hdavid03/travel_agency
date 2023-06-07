@@ -18,7 +18,7 @@
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="container">
       <h2>Signup Form</h2>
-      <form action="/user/new" method="post">
+      <form th:action="@{/signup}" method="post">
 
         <label for="firstName">First name:</label>
         <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">

@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "advertisements")
 public class Advertisement extends BaseEntity {
     
     private Advertisement() {}
