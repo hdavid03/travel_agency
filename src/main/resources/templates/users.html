@@ -12,19 +12,39 @@
     <meta name="author" content="hdavid03">
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tableview.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="content" th:if="${not #lists.isEmpty(userList)}">
-        <ul th:each="user : ${userList}">
-            <li>
-                <span th:text="${user.firstName}"></span>
-                <span th:text="${user.lastName}"></span>
-                <span th:text="${user.email}"></span>
-                <span th:text="${user.birthDate}"></span>
-                <span th:text="${user.phoneNumber}"></span>
-            </li>
-        </ul>
+        <table>
+          <caption>Regisztrált felhasználók listája</caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Vezetéknév</th>
+              <th>Keresztnév</th>
+              <th>Email</th>
+              <th>Cím</th>
+              <th>Telefon</th>
+              <th>Műveletek</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="user : ${userList}">
+              <td th:text="${user.id}"></td>
+              <td th:text="${user.lastName}"></td>
+              <td th:text="${user.firstName}"></td>
+              <td th:text="${user.email}"></td>
+              <td th:text="${user.address}"></td>
+              <td th:text="${user.phoneNumber}"></td>
+              <td>
+                <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-edit">Szerkeszt</button>
+                <a th:href="@{/user/delete/(id=${user.id})}" class="btn btn-delete">Töröl</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
     </div>
     <div th:insert="~{fragments/footer.html}"></div>
   </body>

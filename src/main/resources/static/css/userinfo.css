@@ -1,0 +1,39 @@
+.user-info {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 10px 25px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.save-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 14px;
+  text-decoration: none;
+  text-align: center;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px -1px 0px 1px rgba(0,0,0,0.3) inset;
+  font-weight: 600;
+  font-size: 13.33px;
+  text-indent: 0px;
+  text-shadow: none;
+}
+
+.save-btn:hover {
+  opacity: 0.8;
+}
+
+form {
+    display: inline-block;
+}
+
+label {
+    font-weight: bold;
+}

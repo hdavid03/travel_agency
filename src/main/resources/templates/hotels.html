@@ -12,17 +12,34 @@
     <meta name="author" content="hdavid03">
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tableview.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="content" th:if="${not #lists.isEmpty(hotelList)}">
-        <ul th:each="hotel : ${hotelList}">
-            <li>
-                <span th:text="${hotel.name}"></span>
-                <span th:text="${hotel.address}"></span>
-                <span th:text="${hotel.imageUrl}"></span>
-            </li>
-        </ul>
+        <table>
+          <caption>Regisztrált hotelek listája</caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Hotel</th>
+              <th>Cím</th>
+              <th>Műveletek</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="hotel : ${hotelList}">
+              <td th:text="${hotel.id}"></td>
+              <td th:text="${hotel.name}"></td>
+              <td th:text="${hotel.address}"></td>
+              <td>
+                <button class="btn btn-show">Megnéz</button>
+                <button class="btn btn-edit">Szerkeszt</button>
+                <button class="btn btn-delete">Töröl</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
     </div>
     <div th:insert="~{fragments/footer.html}"></div>
   </body>

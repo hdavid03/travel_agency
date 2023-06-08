@@ -12,18 +12,36 @@
     <meta name="author" content="hdavid03">
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tableview.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="content" th:if="${not #lists.isEmpty(advertisementList)}">
-        <ul th:each="advertisement : ${advertisementList}">
-            <li>
-                <span th:text="${advertisement.city}"></span>
-                <span th:text="${advertisement.country}"></span>
-                <span th:text="${advertisement.imageUrl}"></span>
-                <span th:text="${advertisement.description}"></span>
-            </li>
-        </ul>
+        <table>
+          <caption>Jelenleg aktív hirdetések listája</caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Ország</th>
+              <th>Város</th>
+              <th>Leírás</th>
+              <th>Műveletek</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="advertisement : ${advertisementList}">
+              <td th:text="${advertisement.id}"></td>
+              <td th:text="${advertisement.city}"></td>
+              <td th:text="${advertisement.country}"></td>
+              <td th:text="${advertisement.description}"></td>
+              <td>
+                <button class="btn btn-show">Megnéz</button>
+                <button class="btn btn-edit">Szerkeszt</button>
+                <button class="btn btn-delete">Töröl</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
     </div>
     <div th:insert="~{fragments/footer.html}"></div>
   </body>

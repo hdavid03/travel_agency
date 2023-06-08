@@ -86,14 +86,14 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/find/user/{id}")
+    @GetMapping("/user/{id}")
     public String getUserById(@PathVariable Long id, Model model) {
         User user = userService.findUserById(id);
         model.addAttribute("user", user);
-        return "profile";
+        return "userinfo";
     }
 
-    @PostMapping("/update/user")
+    @PostMapping("/user/update")
     public String updateUser(@Validated User user) {
         User updatedUser = userService.updateUser(user);
         return "redirect:/";
