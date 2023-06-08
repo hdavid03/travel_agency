@@ -14,6 +14,7 @@
             <li><a th:href="@{/advertisement/list}">Hirdetések</a></li>
             <li><a th:href="@{/hotel/list}">Hotelek</a></li>
             <li><a th:href="@{/reservation/list}">Rendelések</a></li>
+            <li><a th:href="@{/user/{id}(id=${#authentication.principal.id})}">Profil</a></li>
             <li>
               <div class="dropdown">
                 <a th:href="@{/admin}">Műveletek ▼</a>

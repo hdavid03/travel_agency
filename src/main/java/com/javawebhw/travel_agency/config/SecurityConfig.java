@@ -46,8 +46,6 @@ public class SecurityConfig {
                 .requestMatchers(AntPathRequestMatcher
                     .antMatcher("/advertisement/**")).permitAll()
                 .requestMatchers(AntPathRequestMatcher
-                    .antMatcher("/h2-console/**")).permitAll()
-                .requestMatchers(AntPathRequestMatcher
                     .antMatcher("/hotel/**")).hasAuthority(ADMIN)
                 .requestMatchers(AntPathRequestMatcher
                     .antMatcher("/user/**")).hasAuthority(ADMIN)

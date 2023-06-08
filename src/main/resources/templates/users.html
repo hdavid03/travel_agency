@@ -27,7 +27,6 @@
               <th>Email</th>
               <th>Cím</th>
               <th>Telefon</th>
-              <th>Műveletek</th>
             </tr>
           </thead>
           <tbody>
@@ -38,10 +37,6 @@
               <td th:text="${user.email}"></td>
               <td th:text="${user.address}"></td>
               <td th:text="${user.phoneNumber}"></td>
-              <td>
-                <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-edit">Szerkeszt</button>
-                <a th:href="@{/user/delete/(id=${user.id})}" class="btn btn-delete">Töröl</button>
-              </td>
             </tr>
           </tbody>
         </table>

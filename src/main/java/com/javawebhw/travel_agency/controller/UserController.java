@@ -93,10 +93,10 @@ public class UserController {
         return "userinfo";
     }
 
-    @PostMapping("/user/update")
+    @PostMapping("/user/{id}")
     public String updateUser(@Validated User user) {
         User updatedUser = userService.updateUser(user);
-        return "redirect:/";
+        return "userinfo";
     }
 
     @DeleteMapping("/delete/{id}")

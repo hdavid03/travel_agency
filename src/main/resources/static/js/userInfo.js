@@ -35,5 +35,5 @@ function updateUser() {
         }
     );
     document.getElementById("saveEdit").submit();
-    return false;
+    return true;
 }
