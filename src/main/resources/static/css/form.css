@@ -14,12 +14,13 @@ h2 {
 }
 
 input[type=text], input[type=password],
-input[type=date] {
+input[type=date], select, textarea {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 

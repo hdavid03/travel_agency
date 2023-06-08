@@ -49,7 +49,7 @@ public class AdvertisementController {
         return "advertisement";
     }
 
-    @PostMapping("/add/new")
+    @PostMapping("/add")
     public String addAdvertisement(@Validated Advertisement advertisement) {
         Advertisement newAdvertisement = advertisementService.addAdvertisement(advertisement);
         return "newadvertisement";

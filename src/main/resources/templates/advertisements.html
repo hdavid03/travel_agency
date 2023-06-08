@@ -16,11 +16,12 @@
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="content" th:if="${not #lists.isEmpty(advertisementList)}">
-        <ul th:each=advertisementList : ${advertisementList}">
+        <ul th:each="advertisement : ${advertisementList}">
             <li>
                 <span th:text="${advertisement.city}"></span>
                 <span th:text="${advertisement.country}"></span>
                 <span th:text="${advertisement.imageUrl}"></span>
+                <span th:text="${advertisement.description}"></span>
             </li>
         </ul>
     </div>
