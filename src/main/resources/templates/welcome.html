@@ -17,10 +17,6 @@
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="content">
       <p>Üdv</p> <span sec:authentication="name">Anonymous </span>
-        <b>Username:</b>
-        <div sec:authentication="name">
-          The value of the "name" property of the authentication object should appear here.
-        </div>
       <div>
         <b>User Roles: </b>
         <div sec:authentication="principal.authorities"></div>

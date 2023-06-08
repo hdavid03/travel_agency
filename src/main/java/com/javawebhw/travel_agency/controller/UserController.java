@@ -60,15 +60,26 @@ public class UserController {
     @PostMapping("/signup")
     public String addUser(@Validated User user) {
         BCryptPasswordEncoder bEncoder = new BCryptPasswordEncoder();
-        System.out.println(bEncoder.encode("admin"));
         user.setPassword(bEncoder.encode(user.getPassword()));
         user.setRole(UserRole.USER);
         userService.addUser(user);
         return "redirect:/";
     }
-    
 
-    @GetMapping("/all")
+    @GetMapping("/add/user")
+    public String loadNewEmployeeUserPage() {
+        return "adduser";
+    }
+
+    @PostMapping("/add/user")
+    public String addEmployeeUser(@Validated User user) {
+        BCryptPasswordEncoder bEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bEncoder.encode(user.getPassword()));
+        userService.addUser(user);
+        return "adduser";
+    }
+
+    @GetMapping("/user/list")
     public String getAllUsers(Model model) {
         List<User> users = userService.getUsers();
         model.addAttribute("userList", users);

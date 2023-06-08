@@ -48,7 +48,7 @@ public class HotelController {
         return "hotelregistration";
     }
 
-    @PostMapping("/add/new")
+    @PostMapping("/registration")
     public String addHotel(@Validated Hotel hotel) {
         Hotel newHotel = hotelService.addHotel(hotel);
         return "hotelregistration";

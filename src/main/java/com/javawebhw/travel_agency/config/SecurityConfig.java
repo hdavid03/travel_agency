@@ -29,20 +29,36 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 @AllArgsConstructor
 public class SecurityConfig {
 
-    /*@Autowired
-    private DaoAuthenticationProvider authenticationProvider;
-    */
+    private static final String ADMIN = "ADMIN";
+    private static final String INTERNAL = "INTERNAL";
+    private static final String USER = "USER";
+    
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .authorizeHttpRequests()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/signup")).permitAll()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/welcome")).permitAll()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/all")).permitAll()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/advertisement/**")).permitAll()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/hotel/**")).hasAuthority("ADMIN")
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/")).permitAll()
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/signup")).permitAll()
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/welcome")).permitAll()
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/advertisement/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/h2-console/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/hotel/**")).hasAuthority(ADMIN)
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/user/**")).hasAuthority(ADMIN)
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/offer/**")).hasAuthority(ADMIN)
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/reservation/**")).hasAuthority(ADMIN)
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/advertisement/**")).hasAuthority(ADMIN)
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/add/user")).hasAuthority(ADMIN)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .and()
                 .formLogin(login -> login

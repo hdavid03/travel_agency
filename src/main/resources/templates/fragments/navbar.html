@@ -9,17 +9,18 @@
     <nav class="navbar">
         <ul sec:authorize="hasAuthority('ADMIN')">
             <li><a th:href="@{/}">Főoldal</a></li>
+            <li><a th:href="@{/user/list}">Felhasználók</a></li>
             <li><a th:href="@{/offer/list}">Ajánlatok</a></li>
             <li><a th:href="@{/advertisement/list}">Hirdetések</a></li>
             <li><a th:href="@{/hotel/list}">Hotelek</a></li>
+            <li><a th:href="@{/reservation/list}">Rendelések</a></li>
             <li>
               <div class="dropdown">
                 <a th:href="@{/admin}">Műveletek ▼</a>
                   <div class="dropdown-content">
-                    <a href="#link1">Új alkalmazott</a>
-                    <a href="#link1">Új felhasználó</a>
-                    <a href="#link2">Hirdetés hozzáadás</a>
-                    <a href="#link3">Ajánlat készítés</a>
+                    <a th:href="@{/add/user}">Új felhasználó</a>
+                    <a th:href="@{/advertisement/add}">Hirdetés hozzáadás</a>
+                    <a th:href="@{/offer/add}">Ajánlat készítés</a>
                     <a th:href="@{/hotel/registration}">Hotel regisztráció</a>
                   </div>
               </div>

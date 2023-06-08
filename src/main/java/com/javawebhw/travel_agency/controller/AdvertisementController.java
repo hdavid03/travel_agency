@@ -30,11 +30,11 @@ public class AdvertisementController {
     @Autowired
     private final AdvertisementService advertisementService;
     
-    @GetMapping("/all")
+    @GetMapping("/list")
     public String getAllAdvertisements(Model model) {
         List<Advertisement> advertisements = advertisementService.getAdvertisements();
         model.addAttribute("advertisementList", advertisements);
-        return "index";
+        return "advertisements";
     }
 
     @GetMapping("/")
@@ -52,7 +52,12 @@ public class AdvertisementController {
     @PostMapping("/add/new")
     public String addAdvertisement(@Validated Advertisement advertisement) {
         Advertisement newAdvertisement = advertisementService.addAdvertisement(advertisement);
-        return "success";
+        return "newadvertisement";
+    }
+
+    @GetMapping("/add")
+    public String loadNewAdvertisementPage() {
+        return "newadvertisement";
     }
 
     @PostMapping("/add/update")

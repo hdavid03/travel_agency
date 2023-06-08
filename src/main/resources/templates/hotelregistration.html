@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hotel Regisztráció</title>
+    <title>Eurotravel - Hotel Regisztráció</title>
     <meta name="description" content="Utazás európában">
     <meta name="keywords" content="nyaralás, külföld, utazás">
     <meta name="author" content="hdavid03">
@@ -18,7 +18,7 @@
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="container">
       <h2>Hotel regisztráció</h2>
-      <form th:action="@{/hotel/add/new}" method="post">
+      <form th:action="@{/hotel/registration}" method="post">
 
         <label for="name">Hotel neve</label>
         <input type="text" id="name" name="name" placeholder="Adja meg a hotel nevét">

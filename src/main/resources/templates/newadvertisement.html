@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eurotravel - Új hirdetés</title>
+    <meta name="description" content="Utazás európában">
+    <meta name="keywords" content="nyaralás, külföld, utazás">
+    <meta name="author" content="hdavid03">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+  </head>
+  <body>
+    <div th:insert="~{fragments/navbar.html}"></div>
+    <div class="container">
+      <h2>Új hirdetés összeállítása</h2>
+      <form th:action="@{/advertisement/add}" method="post">
+
+        <label for="name">Ország</label>
+        <input type="text" id="name" name="name" placeholder="pl. Olaszország">
+
+        <label for="address">Város</label>
+        <input type="text" id="address" name="address" placeholder="pl. Róma">
+
+        <label for="imageUrl">Kép</label>
+        <input type="text" id="imageUrl" name="imageUrl" placeholder="Adjon meg egy képet az utazás helyszínéről">
+        
+        <label for="description">Rövid leírás</label>
+        <textarea id="description" name="description" placeholder="A szöveg maximum 250 karakter lehet"
+        maxlength="250" rows="4" cols="30" >
+
+        <div class="clearfix">
+          <button type="submit">Hirdetés hozzáadása</button>
+        </div>
+      </form>
+    </div>
+    <div th:insert="~{fragments/footer.html}"></div>
+  </body>
+</html>
+

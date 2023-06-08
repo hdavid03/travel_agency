@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eurotravel - Új alkalmazott</title>
+    <title>Eurotravel - Új felhasználó</title>
     <meta name="description" content="Utazás európában">
     <meta name="keywords" content="nyaralás, külföld, utazás">
     <meta name="author" content="hdavid03">
@@ -17,8 +17,8 @@
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="container">
-      <h2>Felhasználó fiók létrehozása</h2>
-      <form th:action="@{/signup}" method="post">
+      <h2>Új alkalmazott hozzáadása</h2>
+      <form th:action="@{/add/user}" method="post">
 
         <label for="firstName">Keresztnév</label>
         <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
@@ -35,6 +35,13 @@
         <label for="phoneNumber">Telefonszám</label>
         <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
 
+        <label for="role">Select Box:</label>
+        <select id="role" name="role">
+          <option value="ADMIN">ADMIN</option>
+          <option value="INTERNAL">INTERNAL</option>
+          <option value="USER">USER</option>
+        </select>
+
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" placeholder="Enter your email">
   
@@ -42,7 +49,7 @@
         <input type="password" id="password" name="password" placeholder="Enter your password">
   
         <div class="clearfix">
-          <button type="submit">Regisztráció</button>
+          <button type="submit">Alkalmazott hozzáadása</button>
         </div>
       </form>
     </div>
