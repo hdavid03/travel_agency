@@ -1,10 +1,9 @@
 package com.javawebhw.travel_agency.controller;
 
 import com.javawebhw.travel_agency.model.User;
-import com.javawebhw.travel_agency.model.UserRole;
+import com.javawebhw.travel_agency.enums.UserRole;
 import com.javawebhw.travel_agency.service.UserService;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +43,8 @@ public class UserController {
         else if (user.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN")))
             return "admin";
         else if (user.getAuthorities().contains(new SimpleGrantedAuthority("INTERNAL")))
-            return "internal";
-        else return "/";
+            return "welcome";
+        else return "index";
     }
 
     @GetMapping("/logout")
@@ -63,11 +62,7 @@ public class UserController {
         BCryptPasswordEncoder bEncoder = new BCryptPasswordEncoder();
         System.out.println(bEncoder.encode("admin"));
         user.setPassword(bEncoder.encode(user.getPassword()));
-        HashSet<UserRole> roles = new HashSet<>();
-        UserRole role = new UserRole();
-        role.setRole("USER");
-        roles.add(role);
-        user.setRoles(roles);
+        user.setRole(UserRole.USER);
         userService.addUser(user);
         return "redirect:/";
     }
