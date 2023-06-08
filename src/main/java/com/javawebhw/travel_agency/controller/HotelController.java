@@ -23,15 +23,16 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Controller
-@RequestMapping("/hotels")
+@RequestMapping("/hotel")
 public class HotelController {
     
     @Autowired
     private final HotelService hotelService;
     
-    @GetMapping("/all")
-    public String getAllHotels() {
+    @GetMapping("/list")
+    public String getAllHotels(Model model) {
         List<Hotel> hotels = hotelService.getHotels();
+        model.addAttribute("hotelList", hotels);
         return "hotels";
     }
 
@@ -42,21 +43,26 @@ public class HotelController {
         return "hotel";
     }
 
+    @GetMapping("/registration")
+    public String loadHotelRegistrationPage() {
+        return "hotelregistration";
+    }
+
     @PostMapping("/add/new")
     public String addHotel(@Validated Hotel hotel) {
         Hotel newHotel = hotelService.addHotel(hotel);
-        return "success";
+        return "hotelregistration";
     }
 
-    @PostMapping("/add/update")
+    @PostMapping("/update")
     public String updateHotel(@Validated Hotel hotel) {
         Hotel updatedHotel = hotelService.updateHotel(hotel);
-        return "success";
+        return "hotelregistration";
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteHotelById(@PathVariable Long id) {
         hotelService.deleteHotelById(id);
-        return "success";
+        return "hotels";
     }
 }

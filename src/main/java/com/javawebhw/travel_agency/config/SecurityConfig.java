@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/all")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/advertisement/**")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/hotel/**")).hasAuthority("ADMIN")
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .and()
                 .formLogin(login -> login

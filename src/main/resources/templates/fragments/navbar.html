@@ -7,14 +7,48 @@
   </head>
   <body>
     <nav class="navbar">
-        <ul>
+        <ul sec:authorize="hasAuthority('ADMIN')">
             <li><a th:href="@{/}">Főoldal</a></li>
-            <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Bejelentkezés</a></li>
-            <li sec:authorize="isAnonymous()"><a th:href="@{/signup}">Regisztráció</a></li>
+            <li><a th:href="@{/offer/list}">Ajánlatok</a></li>
+            <li><a th:href="@{/advertisement/list}">Hirdetések</a></li>
+            <li><a th:href="@{/hotel/list}">Hotelek</a></li>
+            <li>
+              <div class="dropdown">
+                <a th:href="@{/admin}">Műveletek ▼</a>
+                  <div class="dropdown-content">
+                    <a href="#link1">Új alkalmazott</a>
+                    <a href="#link1">Új felhasználó</a>
+                    <a href="#link2">Hirdetés hozzáadás</a>
+                    <a href="#link3">Ajánlat készítés</a>
+                    <a th:href="@{/hotel/registration}">Hotel regisztráció</a>
+                  </div>
+              </div>
+            </li>
+            <li>
+              <form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" class="form-inline">
+               <a href="javascript:{}" onclick="document.getElementById('formLogout').submit(); return false;">Kijelentkezés</a>
+              </form>
+            </li>
+        </ul>
+        <ul sec:authorize="hasAuthority('INTERNAL')">
+            <li><a th:href="@{/}">Főoldal</a></li>
+            <li><a th:href="@{/login}">Bejelentkezés</a></li>
+            <li><a th:href="@{/signup}">Regisztráció</a></li>
             <li><a th:href="@{/advertisement/}">Hirdetés</a></li>
             <li>
-              <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
-               <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Kijelentkezés</a>
+              <form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" class="form-inline">
+               <a href="javascript:{}" onclick="document.getElementById('formLogout').submit(); return false;">Kijelentkezés</a>
+              </form>
+            </li>
+        </ul>
+        <ul sec:authorize="hasAuthority('USER')">
+            <li><a th:href="@{/}">Főoldal</a></li>
+            <li><a th:href="@{/login}">Bejelentkezés</a></li>
+            <li><a th:href="@{/signup}">Regisztráció</a></li>
+            <li><a th:href="@{/advertisement/}">Hirdetés</a></li>
+            <li>
+              <form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" class="form-inline">
+               <a href="javascript:{}" onclick="document.getElementById('formLogout').submit(); return false;">Kijelentkezés</a>
               </form>
             </li>
         </ul>

@@ -6,34 +6,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eurotravel Bejelentkezés</title>
+    <title>Hotel Regisztráció</title>
     <meta name="description" content="Utazás európában">
     <meta name="keywords" content="nyaralás, külföld, utazás">
     <meta name="author" content="hdavid03">
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="container">
-      <h2>Bejelentkezés</h2>
-      <div class="alert alert-danger" th:if="${param.error}">
-        <span>Hibás felhasználónév vagy jelszó!</span>
-      </div>
-      <div class="alert alert-success" th:if="${param.logout}">
-        <span>Sikeresen kijelentkeztél!</span>
-      </div>
-      <form th:action="@{/login}" method="post">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" placeholder="Enter your email address">
+      <h2>Hotel regisztráció</h2>
+      <form th:action="@{/hotel/add/new}" method="post">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <label for="name">Hotel neve</label>
+        <input type="text" id="name" name="name" placeholder="Adja meg a hotel nevét">
 
+        <label for="address">Cím</label>
+        <input type="text" id="address" name="address" placeholder="Adja meg a hotel címét">
+
+        <label for="imageUrl">Kép</label>
+        <input type="text" id="imageUrl" name="imageUrl" placeholder="Adjon meg a hotelről egy képet">
+        
         <div class="clearfix">
-          <button type="submit">Login</button>
+          <button type="submit">Reigsztráció</button>
         </div>
       </form>
     </div>
