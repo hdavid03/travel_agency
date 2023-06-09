@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -76,7 +77,7 @@ public class UserController {
         BCryptPasswordEncoder bEncoder = new BCryptPasswordEncoder();
         user.setPassword(bEncoder.encode(user.getPassword()));
         userService.addUser(user);
-        return "adduser";
+        return "redirect:/add/user?success";
     }
 
     @GetMapping("/user/list")
@@ -93,9 +94,19 @@ public class UserController {
         return "userinfo";
     }
 
-    @PostMapping("/user/{id}")
-    public String updateUser(@Validated User user) {
+    @GetMapping("/user/account")
+    public String loadUserInfoPage(@AuthenticationPrincipal User user) {
+        return "userinfo";
+    }
+
+    @PostMapping("/user/update")
+    public String updateUser(@Validated User user, RedirectAttributes attributes,
+    @AuthenticationPrincipal User loggedUser) throws Exception {
         User updatedUser = userService.updateUser(user);
+        loggedUser.setAddress(user.getAddress());
+        loggedUser.setEmail(user.getEmail());
+        loggedUser.setFirstName(user.getFirstName());
+        loggedUser.setLastName(user.getLastName());
         return "userinfo";
     }
 

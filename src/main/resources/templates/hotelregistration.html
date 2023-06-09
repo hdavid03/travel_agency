@@ -13,11 +13,18 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="container">
       <h2>Hotel regisztráció</h2>
+      <div class="alert alert-danger" th:if="${param.error}">
+        <span>A hotel regisztrációja nem sikerült!</span>
+      </div>
+      <div class="alert alert-success" th:if="${param.success}">
+        <span>A hotel regisztrációja megtörtént!</span>
+      </div>
       <form th:action="@{/hotel/registration}" method="post">
 
         <label for="name">Hotel neve</label>

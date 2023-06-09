@@ -52,7 +52,7 @@ public class AdvertisementController {
     @PostMapping("/add")
     public String addAdvertisement(@Validated Advertisement advertisement) {
         Advertisement newAdvertisement = advertisementService.addAdvertisement(advertisement);
-        return "newadvertisement";
+        return "redirect:/advertisement/add?success";
     }
 
     @GetMapping("/add")
@@ -62,7 +62,7 @@ public class AdvertisementController {
 
     @PostMapping("/add/update")
     public String updateAdvertisement(@Validated Advertisement advertisement) {
-        Advertisement updatedAdvertisement = advertisementService.updateAdvertisement(advertisement);
+        advertisementService.updateAdvertisement(advertisement);
         return "success";
     }
 

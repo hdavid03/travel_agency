@@ -13,10 +13,17 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="container">
+      <div class="alert alert-danger" th:if="${param.error}">
+        <span>A hirdetés közzététele nem sikerült!</span>
+      </div>
+      <div class="alert alert-success" th:if="${param.success}">
+        <span>Sikeres közzététel!</span>
+      </div>
       <h2>Új hirdetés összeállítása</h2>
       <form th:action="@{/advertisement/add}" method="post">
 

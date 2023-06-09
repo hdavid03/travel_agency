@@ -50,8 +50,8 @@ public class HotelController {
 
     @PostMapping("/registration")
     public String addHotel(@Validated Hotel hotel) {
-        Hotel newHotel = hotelService.addHotel(hotel);
-        return "hotelregistration";
+        hotelService.addHotel(hotel);
+        return "redirect:/hotel/registration?success";
     }
 
     @PostMapping("/update")
