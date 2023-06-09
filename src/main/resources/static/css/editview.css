@@ -30,10 +30,6 @@
   opacity: 0.8;
 }
 
-form {
-    display: inline-block;
-}
-
 label {
     font-weight: bold;
 }

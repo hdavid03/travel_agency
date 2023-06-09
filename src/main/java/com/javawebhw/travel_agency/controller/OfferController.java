@@ -29,27 +29,27 @@ public class OfferController {
     @Autowired
     private final OfferService offerService;
     
-    @GetMapping("/all")
+    @GetMapping("/list")
     public String getAllOffers(Model model) {
         List<Offer> offers = offerService.getOffers();
         model.addAttribute("offerList", offers);
         return "offers";
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public String getOfferById(@PathVariable Long id, Model model) {
         Offer offer = offerService.findOfferById(id);
         model.addAttribute("offer", offer);
         return "offer";
     }
 
-    @PostMapping("/add/new")
+    @PostMapping("/add")
     public String addoffer(@Validated Offer offer) {
         Offer newOffer = offerService.addOffer(offer);
         return "success";
     }
 
-    @PostMapping("/add/update")
+    @PostMapping("/update")
     public String updateOffer(@Validated Offer offer) {
         Offer updatedOffer = offerService.updateOffer(offer);
         return "success";

@@ -6,38 +6,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eurotravel - Felhasználó információk</title>
+    <title>Eurotravel - Felhasználói profil</title>
     <meta name="description" content="Utazás európában">
     <meta name="keywords" content="nyaralás, külföld, utazás">
     <meta name="author" content="hdavid03">
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/editview.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
-    <div class="content">
-        <!-- User information HTML -->
-        <div class="edit-view">
-          <label for="lastName">Vezetéknév:</label>
-          <span id="lastName" sec:authentication="principal.lastName">John Doe</span>
-          <label for="firstName">Keresztnév:</label>
-          <span id="firstName" sec:authentication="principal.firstName">John Doe</span>
-          <label for="address">Cím:</label>
-          <span id="address" sec:authentication="principal.address">123-456-7890</span>
-          <label for="phoneNumber">Telefonszám:</label>
-          <span id="phoneNumber" sec:authentication="principal.phoneNumber">123-456-7890</span>
-          <label for="email">Email:</label>
-          <span id="email" sec:authentication="principal.email">johndoe@example.com</span>
-          <button id="editButton" onclick="editItem()">Szerkesztés</button>
-          <form id="saveEdit" th:action="@{/user/update}" method="post">
-           <a href="#" class="save-btn" onclick="updateItem()">Mentés</a>
-          </form>
+    <div class="container">
+      <div class="alert alert-success" th:if="${param.success}">
+        <span>Felhasználó módosítása megtörtént!</span>
+      </div>
+      <h2>Felhasználó fiók módosítása</h2>
+      <form th:action="@{/user/update/{id}(id=${user.id})}" method="post">
+
+        <label for="firstName">Keresztnév</label>
+        <input type="text" id="firstName" name="firstName" th:value="${user.firstName}" placeholder="Add meg a keresztneved">
+
+        <label for="lastName">Vezetéknév</label>
+        <input type="text" id="lastName" name="lastName" th:value="${user.lastName}" placeholder="Add meg a vezetékneved">
+
+        <label for="birthDate">Születési dátum</label>
+        <input type="date" id="birthDate" name="birthDate" th:value="${user.birthDate}" placeholder="Add meg a születési dátumod">
+
+        <label for="address">Cím</label>
+        <input type="text" id="address" name="address" th:value="${user.address}" placeholder="pl. Budapest, Petőfi u. 3.">
+  
+        <label for="phoneNumber">Telefonszám</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" th:value="${user.phoneNumber}" maxlength="14">
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" th:value="${user.email}">
+  
+        <label for="password">Jelszó</label>
+        <input type="password" id="password" name="password"
+        placeholder="minimum 8 karakter" required maxlength="80">
+  
+        <div class="clearfix">
+          <button type="submit">Módosítás</button>
         </div>
+      </form>
     </div>
     <div th:insert="~{fragments/footer.html}"></div>
-    <!-- scripts -->
-    <script type="text/javascript" th:src="@{/js/editView.js}"></script>
   </body>
 </html>

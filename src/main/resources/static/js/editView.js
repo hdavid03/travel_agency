@@ -1,26 +1,18 @@
 function editItem() {
     let button = document.getElementById("editButton");
     if (button.innerHTML === "Szerkesztés") {
-        Array.from(document.getElementsByTagName("span"))
+        Array.from(document.getElementsByTagName("input"))
+        .filter(input => input.type == "text")
         .forEach(
-            span => {
-                let inputText = document.createElement("input");
-                inputText.type = "text";
-                inputText.value = span.innerHTML;
-                span.replaceWith(inputText);
-            }
+            inputText => inputText.disabled = false
         );
 
-        button.innerHTML = "Mégse";
+        button.innerHTML = "Jóváhagy";
     } else {
     Array.from(document.getElementsByTagName("input"))
     .filter(inputText => inputText.type == "text")
     .forEach(
-        inputText => {
-            let span = document.createElement("span");
-            span.innerHTML = inputText.value;
-            inputText.replaceWith(span);
-        }
+        inputText => inputText.disabled = true
     );
     button.innerHTML = "Szerkesztés";
     }
@@ -29,9 +21,9 @@ function editItem() {
 function updateItem() {
     Array.from(document.getElementsByTagName("input")).forEach(
         inputText => {
-            let span = document.createElement("span");
-            span.innerHTML = inputText.innerHTML;
-            inputText.replaceWith(span);
+            let inputText = document.createElement("inputText");
+            inputText.innerHTML = inputText.innerHTML;
+            inputText.replaceWith(inputText);
         }
     );
     document.getElementById("saveEdit").submit();

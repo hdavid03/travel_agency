@@ -67,7 +67,7 @@ public class UserController {
     }
 
     @PostMapping("/add/user")
-    public String addEmployeeUser(@Validated User user) {
+    public String addUserByAdmin(@Validated User user) {
         BCryptPasswordEncoder bEncoder = new BCryptPasswordEncoder();
         user.setPassword(bEncoder.encode(user.getPassword()));
         userService.addUser(user);
@@ -93,15 +93,21 @@ public class UserController {
         return "userinfo";
     }
 
-    @PostMapping("/user/update")
-    public String updateUser(@Validated User user, RedirectAttributes attributes,
-    @AuthenticationPrincipal User loggedUser) throws Exception {
-        User updatedUser = userService.updateUser(user);
-        loggedUser.setAddress(user.getAddress());
-        loggedUser.setEmail(user.getEmail());
-        loggedUser.setFirstName(user.getFirstName());
-        loggedUser.setLastName(user.getLastName());
-        return "userinfo";
+    @PostMapping("/user/update/{id}")
+    public String updateUser(@Validated User user, @PathVariable Long id) {
+        BCryptPasswordEncoder bEncoder = new BCryptPasswordEncoder();
+        User oldUser = userService.findUserById(id);
+        oldUser.setAddress(user.getAddress());
+        oldUser.setEmail(user.getEmail());
+        oldUser.setFirstName(user.getFirstName());
+        oldUser.setLastName(user.getLastName());
+        oldUser.setBirthDate(user.getBirthDate());
+        oldUser.setPhoneNumber(user.getPhoneNumber());
+        oldUser.setReservationList(user.getReservationList());
+        oldUser.setSavedOfferList(user.getSavedOfferList());
+        oldUser.setPassword(bEncoder.encode(user.getPassword()));
+        userService.updateUser(oldUser);
+        return "redirect:/user/%s?success".formatted(id.toString());
     }
 
     @DeleteMapping("/delete/{id}")

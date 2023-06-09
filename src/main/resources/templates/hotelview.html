@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eurotravel - Hotel nézet</title>
+    <meta name="description" content="Utazás európában">
+    <meta name="keywords" content="nyaralás, külföld, utazás">
+    <meta name="author" content="hdavid03">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}">
+  </head>
+  <body>
+    <div th:insert="~{fragments/navbar.html}"></div>
+    <div class="container">
+      <h2>Hotel nézet</h2>
+      <div class="alert alert-success" th:if="${param.success}">
+        <span>A hotel módosítása megtörtént!</span>
+      </div>
+      <form th:action="@{/hotel/update/{id}(id=${hotel.id})}" method="post">
+
+        <label for="name">Hotel neve</label>
+        <input type="text" id="name" name="name" th:value="${hotel.name}">
+
+        <label for="address">Cím</label>
+        <input type="text" id="address" name="address" th:value="${hotel.address}">
+
+        <label for="imageUrl">Kép</label>
+        <input type="text" id="imageUrl" name="imageUrl" th:value="${hotel.imageUrl}">
+        
+        <div class="clearfix">
+          <button type="submit">Módosítás</button>
+        </div>
+      </form>
+    </div>
+    <div th:insert="~{fragments/footer.html}"></div>
+  </body>
+</html>
+
+
