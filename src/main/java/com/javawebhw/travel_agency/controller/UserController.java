@@ -104,7 +104,6 @@ public class UserController {
         oldUser.setBirthDate(user.getBirthDate());
         oldUser.setPhoneNumber(user.getPhoneNumber());
         oldUser.setReservationList(user.getReservationList());
-        oldUser.setSavedOfferList(user.getSavedOfferList());
         oldUser.setPassword(bEncoder.encode(user.getPassword()));
         userService.updateUser(oldUser);
         return "redirect:/user/%s?success".formatted(id.toString());

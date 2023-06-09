@@ -31,9 +31,6 @@ public class Offer extends BaseEntity {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @ManyToOne
     @JoinColumn(name = "advertisement_id")
     private Advertisement advertisement;
 }

@@ -13,28 +13,49 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}">
   </head>
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="container">
-      <h2>Hotel regisztráció</h2>
+      <div class="alert alert-success" th:if="${param.success}">
+        <span>Ajánlat hozzáadása sikeres volt</span>
+      </div>
+      <h2>Ajánlat hozzáadása</h2>
       <form th:action="@{/offer/add}" method="post">
 
-        <label for="name">Hotel neve</label>
-        <input type="text" id="name" name="name" placeholder="Adja meg a hotel nevét">
+        <label for="unitPrice">Ajánlat ára/fő (Ft)</label>
+        <input type="text" id="unitPrice" name="unitPrice" required placeholder="pl. 89900">
 
-        <label for="address">Cím</label>
-        <input type="text" id="address" name="address" placeholder="Adja meg a hotel címét">
+        <label for="minimumTraveller">Utasok minimum száma</label>
+        <input type="text" id="minimumTraveller" name="minimumTraveller"
+        required min="2" placeholder="min. 2 fő" onmouseleave="checkMinNumber()">
 
-        <label for="imageUrl">Kép</label>
-        <input type="text" id="imageUrl" name="imageUrl" placeholder="Adjon meg a hotelről egy képet">
+        <label for="maximumTraveller">Utasok maximum száma</label>
+        <input type="text" id="maximumTraveller" name="maximumTraveller"
+        required max="30" placeholder="max. 30 fő" onmouseleave="checkMaxNumber()">
         
+        <label for="departureTime">Indulási dátum</label>
+        <input type="datetime-local" id="departureTime" name="departureTime" required>
+
+        <label for="arrivalTime">Érkezés dátuma</label>
+        <input type="datetime-local" id="arrivalTime" name="arrivalTime" required
+        onmouseleave="checkArrivalTime()">
+        
+        <label for="hotel">Hotel neve</label>
+        <select id="hotel" name="hotel" onmouseenter="getItemsWithName('hotel')"></select>
+
+        <label for="advertisement">Hirdetés címe</label>
+        <select id="advertisement" name="advertisement" onmouseenter="getItemsWithName('advertisement')"></select>
+
         <div class="clearfix">
-          <button type="submit">Reigsztráció</button>
+          <button type="submit">Hozzáad</button>
         </div>
       </form>
     </div>
     <div th:insert="~{fragments/footer.html}"></div>
+    <script type="text/javascript" th:src="@{/js/getItemsWithName.js}"></script>
+    <script type="text/javascript" th:src="@{/js/newOffer.js}"></script>
   </body>
 </html>
 

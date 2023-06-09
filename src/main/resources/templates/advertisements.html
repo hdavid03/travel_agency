@@ -35,7 +35,7 @@
               <td th:text="${advertisement.country}"></td>
               <td th:text="${advertisement.description}"></td>
               <td>
-                <a class="btn btn-show">Megnéz</a>
+                <a th:href="@{/advertisement/{id}(id=${advertisement.id})}" class="btn btn-show">Megnéz</a>
                 <a class="btn btn-edit">Szerkeszt</a>
                 <a class="btn btn-delete">Töröl</a>
               </td>

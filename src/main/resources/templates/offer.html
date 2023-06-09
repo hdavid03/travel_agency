@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eurotravel - Ajánlat szerkesztése</title>
+    <meta name="description" content="Utazás európában">
+    <meta name="keywords" content="nyaralás, külföld, utazás">
+    <meta name="author" content="hdavid03">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}">
+  </head>
+  <body>
+    <div th:insert="~{fragments/navbar.html}"></div>
+    <div class="container">
+      <div class="alert alert-success" th:if="${param.success}">
+        <span>Az ajánlat sikeres módosult</span>
+      </div>
+      <h2>Ajánlat módosítása</h2>
+      <form th:action="@{/offer/update}" method="post">
+
+        <label for="unitPrice">Ajánlat ára/fő (Ft)</label>
+        <input type="text" id="unitPrice" name="unitPrice" required th:value="${offer.unitPrice}">
+
+        <label for="minimumTraveller">Utasok minimum száma</label>
+        <input type="text" id="minimumTraveller" name="minimumTraveller"
+        required min="2" onmouseleave="checkMinNumber()" th:value="${offer.minimumTraveller}">
+
+        <label for="maximumTraveller">Utasok maximum száma</label>
+        <input type="text" id="maximumTraveller" name="maximumTraveller"
+        required max="30" onmouseleave="checkMaxNumber()" th:value="${offer.maximumTraveller}">
+        
+        <label for="departureTime">Indulási dátum</label>
+        <input type="datetime-local" id="departureTime" name="departureTime"
+        required th:value="${offer.departureTime}">
+
+        <label for="arrivalTime">Érkezés dátuma</label>
+        <input type="datetime-local" id="arrivalTime" name="arrivalTime" placeholder=""
+        required onmouseleave="checkArrivalTime()" th:value="${offer.arrivalTime}">
+        
+        <label for="hotel">Hotel neve</label>
+        <select id="hotel" name="hotel" onmouseenter="getItemsWithName('hotel')">
+            <option th:value="${offer.hotel.id}" th:text="${offer.hotel.name}"></option>
+        </select>
+
+        <label for="advertisement">Hirdetés címe</label>
+        <select id="advertisement" name="advertisement" onmouseenter="getItemsWithName('advertisement')">
+            <option th:value="${offer.advertisement.id}" th:text="${offer.advertisement.title}"></option>
+        </select>
+
+        <div class="clearfix">
+          <button type="submit">Módosítás</button>
+        </div>
+      </form>
+    </div>
+    <div th:insert="~{fragments/footer.html}"></div>
+    <script type="text/javascript" th:src="@{/js/getItemsWithName.js}"></script>
+    <script type="text/javascript" th:src="@{/js/newOffer.js}"></script>
+  </body>
+</html>
+

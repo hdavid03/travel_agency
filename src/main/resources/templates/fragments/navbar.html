@@ -64,6 +64,12 @@
               </form>
             </li>
         </ul>
+        <ul sec:authorize="isAnonymous()">
+            <li><a th:href="@{/}">Főoldal</a></li>
+            <li><a th:href="@{/advertisement/list}">Hirdetések</a></li>
+            <li><a th:href="@{/login}">Bejelentkezés</a></li>
+            <li><a th:href="@{/signup}">Regisztráció</a></li>
+        </ul>
     </nav>
     <script type="text/javascript" th:src="@{/js/logout.js}"></script>
   </body>

@@ -37,6 +37,13 @@ public class HotelController {
         return "hotels";
     }
 
+    @GetMapping("/names")
+    public String getSelectableHotels(Model model) {
+        List<Hotel> hotels = hotelService.getHotels();
+        model.addAttribute("hotelList", hotels);
+        return "fragments/selectablehotels";
+    }
+
     @GetMapping("/{id}")
     public String getHotelById(@PathVariable Long id, Model model) {
         Hotel hotel = hotelService.findHotelById(id);

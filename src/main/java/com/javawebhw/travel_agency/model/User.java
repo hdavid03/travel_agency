@@ -56,9 +56,6 @@ public class User extends BaseEntity implements UserDetails {
     private UserRole role;
 
     @OneToMany(mappedBy = "user")
-    private List<Offer> savedOfferList;
-
-    @OneToMany(mappedBy = "user")
     private List<Reservation> reservationList;
 
     @Override

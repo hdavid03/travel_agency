@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .requestMatchers(AntPathRequestMatcher
                     .antMatcher("/welcome")).permitAll()
                 .requestMatchers(AntPathRequestMatcher
-                    .antMatcher("/advertisement/**")).permitAll()
+                    .antMatcher("/advertisement/list")).permitAll()
                 .requestMatchers(AntPathRequestMatcher
                     .antMatcher("/hotel/**")).hasAuthority(ADMIN)
                 .requestMatchers(AntPathRequestMatcher
@@ -55,6 +55,10 @@ public class SecurityConfig {
                     .antMatcher("/reservation/**")).hasAuthority(ADMIN)
                 .requestMatchers(AntPathRequestMatcher
                     .antMatcher("/advertisement/**")).hasAuthority(ADMIN)
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/advertisement/randomAd")).permitAll()
+                .requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/advertisement/randomAd")).anonymous()
                 .requestMatchers(AntPathRequestMatcher
                     .antMatcher("/add/user")).hasAuthority(ADMIN)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()

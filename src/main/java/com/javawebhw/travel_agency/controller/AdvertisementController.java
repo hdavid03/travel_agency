@@ -1,5 +1,6 @@
 package com.javawebhw.travel_agency.controller;
 
+import java.security.SecureRandom;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,24 @@ public class AdvertisementController {
         List<Advertisement> advertisements = advertisementService.getAdvertisements();
         model.addAttribute("advertisementList", advertisements);
         return "advertisements";
+    }
+
+    @GetMapping("/names")
+    public String getSelectableAdvertisements(Model model) {
+        List<Advertisement> advertisements = advertisementService.getAdvertisements();
+        model.addAttribute("advertisementList", advertisements);
+        return "fragments/selectableadvertisements";
+    }
+
+    @GetMapping("/randomAd")
+    public String getRandomAdvertisement(Model model) {
+        List<Advertisement> advertisements = advertisementService.getAdvertisements();
+        SecureRandom random = new SecureRandom();
+        int size = advertisements.size();
+        Advertisement ad = advertisementService
+            .findAdvertisementById(random.nextLong(size - 1L) + 1L);
+        model.addAttribute("ad", ad);
+        return "fragments/advertisement";
     }
 
     @GetMapping("/")

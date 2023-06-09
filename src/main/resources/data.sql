@@ -11,6 +11,8 @@ INSERT INTO users (address, birth_date, email, first_name, last_name, password, 
     '$2a$10$mISTa3.0QLR6PzNofrIAUeuo3hJf/p5Tc91DiLGLmy0QQPHSmj5me', '01234567', 'INTERNAL');
 
 INSERT INTO hotels (name, address, image_url) VALUES ('Rubin Hotel', 'Dayka Gábor utca 2.', 'rubin_kep.jpg');
+INSERT INTO hotels (name, address, image_url) VALUES ('Central Hotel', 'Olasz utca 2.', 'central_kep.jpg');
+INSERT INTO hotels (name, address, image_url) VALUES ('Berlin Hotel', 'Német utca 3.', 'berlinhotel_kep.jpg');
 INSERT INTO hotels (name, address, image_url) VALUES ('Mariott Hotel', 'Apáczai Csere János u. 4', 'mariott_kep.jpg');
 
 INSERT INTO advertisements (title, description, country, city, image_url)
@@ -20,3 +22,15 @@ INSERT INTO advertisements (title, description, country, city, image_url)
 INSERT INTO advertisements (title, description, country, city, image_url)
     VALUES ('Tengerpart és napsütés Krétán', 'Élvezze a napsütést az ókori görög kultúra bölcsőjében',
     'Görögország', 'Hanía', 'kreta.img');
+
+INSERT INTO advertisements (title, description, country, city, image_url)
+    VALUES ('Nyári üdülés Nápolyban', 'Forró olasz nyár a Földközi-tenger partjánál',
+    'Olaszország', 'Nápoly', 'kreta.img');
+
+INSERT INTO advertisements (title, description, country, city, image_url)
+    VALUES ('Nyári üdülés Athénban', 'Fedezd fel az ókori építészetet Athénban',
+    'Görögország', 'Athén', 'athen.img');
+
+INSERT INTO advertisements (title, description, country, city, image_url)
+    VALUES ('Karácsony Berlinben', 'Töltődj fel Berlinben a téli ünnepek alatt',
+    'Németország', 'Berlin', 'athen.img');

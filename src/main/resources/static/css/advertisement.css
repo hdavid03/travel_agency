@@ -7,6 +7,16 @@
     margin-top: 100px;
     margin-bottom: 50px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.advertisement.hide {
+    opacity: 0;
+}
+
+.advertisement.show {
+    opacity: 1;
 }
 
 .advertisement h1 {

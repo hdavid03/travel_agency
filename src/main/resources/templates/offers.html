@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eurotravel - Ajánlatok listája</title>
+    <meta name="description" content="Utazás európában">
+    <meta name="keywords" content="nyaralás, külföld, utazás">
+    <meta name="author" content="hdavid03">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/content.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tableview.css}">
+  </head>
+  <body>
+    <div th:insert="~{fragments/navbar.html}"></div>
+    <div class="content" th:if="${not #lists.isEmpty(offerList)}">
+        <table>
+          <caption>Regisztrált ajánlatok listája</caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Utasok száma</th>
+              <th>Ár/fő</th>
+              <th>Indulás</th>
+              <th>Érkezés</th>
+              <th>Műveletek</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="offer : ${offerList}">
+              <td th:text="${offer.id}"></td>
+              <td th:text="${offer.minimumTraveller} eq ${offer.maximumTraveller} ?
+                ${offer.minimumTraveller} : ${offer.minimumTraveller + '-' + offer.maximumTraveller}"></td>
+              <td th:text="${offer.unitPrice}"></td>
+              <td th:text="${offer.departureTime}"></td>
+              <td th:text="${offer.arrivalTime}"></td>
+              <td>
+                <a th:href="@{/offer/{id}(id=${offer.id})}" class="btn btn-edit">Szerkeszt</a>
+                <a th:href="@{/offer/delete/{id}(id=${offer.id})}" class="btn btn-delete">Töröl</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div th:insert="~{fragments/footer.html}"></div>
+  </body>
+</html>

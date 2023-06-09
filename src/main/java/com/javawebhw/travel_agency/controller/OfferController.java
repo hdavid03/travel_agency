@@ -43,16 +43,21 @@ public class OfferController {
         return "offer";
     }
 
+    @GetMapping("/add")
+    public String loadAddOffer(Model model) {
+        return "newoffer";
+    }
+
     @PostMapping("/add")
-    public String addoffer(@Validated Offer offer) {
+    public String addOffer(@Validated Offer offer) {
         Offer newOffer = offerService.addOffer(offer);
-        return "success";
+        return "redirect:/offer/add?success";
     }
 
     @PostMapping("/update")
     public String updateOffer(@Validated Offer offer) {
         Offer updatedOffer = offerService.updateOffer(offer);
-        return "success";
+        return "redirect:/offer?success";
     }
 
     @DeleteMapping("/delete/{id}")
