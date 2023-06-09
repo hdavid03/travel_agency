@@ -29,17 +29,27 @@
             </li>
             <li>
               <form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" class="form-inline">
-               <a href="javascript:{}" onclick="document.getElementById('formLogout').submit(); return false;">Kijelentkezés</a>
+               <a href="#" onclick="logout()">Kijelentkezés</a>
               </form>
             </li>
         </ul>
         <ul sec:authorize="hasAuthority('INTERNAL')">
             <li><a th:href="@{/}">Főoldal</a></li>
-            <li><a th:href="@{/advertisement/}">Hirdetés</a></li>
+            <li><a th:href="@{/reservation/list}">Rendelések</a></li>
+            <li>
+              <div class="dropdown">
+                <a href="#">Műveletek<i class="fa-solid fa-bars" style="margin-left:8px;"></i></a>
+                  <div class="dropdown-content">
+                    <a th:href="@{/advertisement/add}">Hirdetés hozzáadás</a>
+                    <a th:href="@{/offer/add}">Ajánlat készítés</a>
+                    <a th:href="@{/hotel/registration}">Hotel regisztráció</a>
+                  </div>
+              </div>
+            </li>
             <li><a th:href="@{/user/account}">Profil</a></li>
             <li>
               <form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" class="form-inline">
-               <a href="javascript:{}" onclick="document.getElementById('formLogout').submit(); return false;">Kijelentkezés</a>
+               <a href="#" onclick="document.getElementById('formLogout').submit(); return false;">Kijelentkezés</a>
               </form>
             </li>
         </ul>
@@ -50,10 +60,11 @@
             <li><a th:href="@{/advertisement/}">Hirdetés</a></li>
             <li>
               <form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" class="form-inline">
-               <a href="javascript:{}" onclick="document.getElementById('formLogout').submit(); return false;">Kijelentkezés</a>
+               <a href="#" onclick="logout()">Kijelentkezés</a>
               </form>
             </li>
         </ul>
     </nav>
+    <script type="text/javascript" th:src="@{/js/logout.js}"></script>
   </body>
 </html>

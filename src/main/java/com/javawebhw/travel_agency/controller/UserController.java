@@ -39,13 +39,7 @@ public class UserController {
 
     @GetMapping("/welcome")
     public String atLoginSuccess(@AuthenticationPrincipal User user) {
-        if (user.getAuthorities().contains(new SimpleGrantedAuthority("USER")))
-            return "welcome";
-        else if (user.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN")))
-            return "admin";
-        else if (user.getAuthorities().contains(new SimpleGrantedAuthority("INTERNAL")))
-            return "welcome";
-        else return "index";
+        return "welcome";
     }
 
     @GetMapping("/logout")
