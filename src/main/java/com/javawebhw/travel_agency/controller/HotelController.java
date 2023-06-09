@@ -36,7 +36,7 @@ public class HotelController {
         return "hotels";
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public String getHotelById(@PathVariable Long id, Model model) {
         Hotel hotel = hotelService.findHotelById(id);
         model.addAttribute("hotel", hotel);
@@ -57,7 +57,7 @@ public class HotelController {
     @PostMapping("/update")
     public String updateHotel(@Validated Hotel hotel) {
         Hotel updatedHotel = hotelService.updateHotel(hotel);
-        return "hotelregistration";
+        return "redirect:/hotel/update?edit";
     }
 
     @DeleteMapping("/delete/{id}")

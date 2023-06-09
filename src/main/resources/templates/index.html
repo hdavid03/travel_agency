@@ -16,6 +16,12 @@
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="content">
+      <div class="alert alert-danger" th:if="${param.error}">
+        <span>Regisztráció nem sikerült!</span>
+      </div>
+      <div class="alert alert-success" th:if="${param.success}">
+        <span>Sikeres regisztráció!</span>
+      </div>
     </div>
     <div th:insert="~{fragments/footer.html}"></div>
   </body>

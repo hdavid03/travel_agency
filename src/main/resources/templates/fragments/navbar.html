@@ -14,7 +14,7 @@
             <li><a th:href="@{/offer/list}">Ajánlatok</a></li>
             <li><a th:href="@{/advertisement/list}">Hirdetések</a></li>
             <li><a th:href="@{/hotel/list}">Hotelek</a></li>
-            <li><a th:href="@{/reservation/list}">Rendelések</a></li>
+            <li><a th:href="@{/reservation/list}">Foglalások</a></li>
             <li><a th:href="@{/user/account}">Profil</a></li>
             <li>
               <div class="dropdown">
@@ -35,7 +35,7 @@
         </ul>
         <ul sec:authorize="hasAuthority('INTERNAL')">
             <li><a th:href="@{/}">Főoldal</a></li>
-            <li><a th:href="@{/reservation/list}">Rendelések</a></li>
+            <li><a th:href="@{/reservation/list}">Foglalások</a></li>
             <li>
               <div class="dropdown">
                 <a href="#">Műveletek<i class="fa-solid fa-bars" style="margin-left:8px;"></i></a>
@@ -55,9 +55,9 @@
         </ul>
         <ul sec:authorize="hasAuthority('USER')">
             <li><a th:href="@{/}">Főoldal</a></li>
-            <li><a th:href="@{/login}">Bejelentkezés</a></li>
-            <li><a th:href="@{/signup}">Regisztráció</a></li>
-            <li><a th:href="@{/advertisement/}">Hirdetés</a></li>
+            <li><a th:href="@{/advertisement/}">Hirdetések</a></li>
+            <li><a th:href="@{/advertisement/}">Foglalásaim</a></li>
+            <li><a th:href="@{/advertisement/}">Profil</a></li>
             <li>
               <form sec:authorize="isAuthenticated()" id="formLogout" th:action="@{/logout}" method="post" class="form-inline">
                <a href="#" onclick="logout()">Kijelentkezés</a>

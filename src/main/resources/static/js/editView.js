@@ -1,4 +1,4 @@
-function editUser() {
+function editItem() {
     let button = document.getElementById("editButton");
     if (button.innerHTML === "Szerkesztés") {
         Array.from(document.getElementsByTagName("span"))
@@ -26,7 +26,7 @@ function editUser() {
     }
 }
 
-function updateUser() {
+function updateItem() {
     Array.from(document.getElementsByTagName("input")).forEach(
         inputText => {
             let span = document.createElement("span");
@@ -35,5 +35,5 @@ function updateUser() {
         }
     );
     document.getElementById("saveEdit").submit();
-    return true;
+    return false;
 }

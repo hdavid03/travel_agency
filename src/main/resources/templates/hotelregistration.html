@@ -25,6 +25,9 @@
       <div class="alert alert-success" th:if="${param.success}">
         <span>A hotel regisztrációja megtörtént!</span>
       </div>
+      <div class="alert alert-success" th:if="${param.edit}">
+        <span>A hotel módosítása megtörtént!</span>
+      </div>
       <form th:action="@{/hotel/registration}" method="post">
 
         <label for="name">Hotel neve</label>

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eurotravel - Felhasználó információk</title>
+    <title>Eurotravel - Hotel információk</title>
     <meta name="description" content="Utazás európában">
     <meta name="keywords" content="nyaralás, külföld, utazás">
     <meta name="author" content="hdavid03">
@@ -18,21 +18,16 @@
   <body>
     <div th:insert="~{fragments/navbar.html}"></div>
     <div class="content">
-        <!-- User information HTML -->
         <div class="edit-view">
-          <label for="lastName">Vezetéknév:</label>
-          <span id="lastName" sec:authentication="principal.lastName">John Doe</span>
-          <label for="firstName">Keresztnév:</label>
-          <span id="firstName" sec:authentication="principal.firstName">John Doe</span>
-          <label for="address">Cím:</label>
-          <span id="address" sec:authentication="principal.address">123-456-7890</span>
-          <label for="phoneNumber">Telefonszám:</label>
-          <span id="phoneNumber" sec:authentication="principal.phoneNumber">123-456-7890</span>
-          <label for="email">Email:</label>
-          <span id="email" sec:authentication="principal.email">johndoe@example.com</span>
+          <label for="name">A hotel neve</label>
+          <span id="name" th:text="${hotel.name}"></span>
+          <label for="address">Cím</label>
+          <span id="address" th:text="${hotel.address}"></span>
+          <label for="imageUrl">Kép</label>
+          <span id="imageUrl" th:text="${hotel.imageUrl}"></span>
           <button id="editButton" onclick="editItem()">Szerkesztés</button>
-          <form id="saveEdit" th:action="@{/user/update}" method="post">
-           <a href="#" class="save-btn" onclick="updateItem()">Mentés</a>
+          <form id="saveEdit" th:action="@{/hotel/update}" method="post">
+           <a href="#" class="save-btn" onclick="updateItem()">Jóváhagy</a>
           </form>
         </div>
     </div>
@@ -41,3 +36,4 @@
     <script type="text/javascript" th:src="@{/js/editView.js}"></script>
   </body>
 </html>
+

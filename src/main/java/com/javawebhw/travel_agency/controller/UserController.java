@@ -58,7 +58,7 @@ public class UserController {
         user.setPassword(bEncoder.encode(user.getPassword()));
         user.setRole(UserRole.USER);
         userService.addUser(user);
-        return "redirect:/";
+        return "redirect:/?success";
     }
 
     @GetMapping("/add/user")
